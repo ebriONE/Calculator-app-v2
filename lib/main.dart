@@ -1,24 +1,41 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      home: HomePage(),
+    );
+  }
+
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context){
+      return Scaffold(
         appBar: AppBar(
-          title: Text("Learning app"),
+          title: const Text("Calculator"),
+          centerTitle: false,
         ),
+        backgroundColor: Colors.deepPurpleAccent,
         body:
            Row(
              children: [
                Column(
-                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                  crossAxisAlignment: CrossAxisAlignment.start, children: [
                    Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -27,8 +44,8 @@ class MyApp extends StatelessWidget {
                        height: 40,
                        child: TextButton(onPressed: (){},
                         style: TextButton.styleFrom(
-                          side: const BorderSide( width: 1.0 )),
-                        child:  const Text("7")
+                          side: const BorderSide( width: 1.0)),
+                        child:  const Text("7"),
                     ),),
                 ),
                 Padding(
@@ -52,15 +69,16 @@ class MyApp extends StatelessWidget {
                         style: TextButton.styleFrom(
                           side: const BorderSide(width: 1.0)),
                         child: const Text("1")),
+                    //end of first column
                   ),
                 )]
         ),
               Column(
-               mainAxisAlignment: MainAxisAlignment.spaceAround,
+               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                crossAxisAlignment: CrossAxisAlignment.center,
                children: [
                  Padding(
-                   padding: const EdgeInsets.fromLTRB(50.0,8.0,8.0,8.0),
+                   padding: const EdgeInsets.fromLTRB(8.0,8.0,8.0,8.0),
                    child: SizedBox(
                      width: 70,
                      height: 40,
@@ -68,12 +86,12 @@ class MyApp extends StatelessWidget {
                          style: TextButton.styleFrom(
                            side: const BorderSide(width: 1.0)
                          ),
-                         child: Text("8")
+                         child: const Text("8")
                      ),
                    ),
                  ),
                  Padding(
-                   padding: const EdgeInsets.fromLTRB(50.0,8.0,8.0,8.0),
+                   padding: const EdgeInsets.fromLTRB(8.0,8.0,8.0,8.0),
                    child: SizedBox(
                      width: 70,
                      height: 40,
@@ -81,12 +99,12 @@ class MyApp extends StatelessWidget {
                          style: TextButton.styleFrom(
                              side: const BorderSide(width: 1.0)
                          ),
-                         child: Text("8")
+                         child: const Text("8")
                      ),
                    ),
                  ),
                  Padding(
-                   padding: const EdgeInsets.fromLTRB(50.0,8.0,8.0,8.0),
+                   padding: const EdgeInsets.fromLTRB(8.0,8.0,8.0,8.0),
                    child: SizedBox(
                      width: 70,
                      height: 40,
@@ -94,7 +112,20 @@ class MyApp extends StatelessWidget {
                          style: TextButton.styleFrom(
                              side: const BorderSide(width: 1.0)
                          ),
-                         child: Text("8")
+                         child: const Text("8")
+                     ),
+                   ),
+                 ),
+                 Padding(
+                   padding: const EdgeInsets.fromLTRB(8.0,8.0,8.0,8.0),
+                   child: SizedBox(
+                     width: 70,
+                     height: 40,
+                     child: TextButton(onPressed: (){},
+                       style: TextButton.styleFrom(
+                         side: const BorderSide(width: 1.0)
+                       ),
+                         child: const Text("8"),
                      ),
                    ),
                  )
@@ -102,11 +133,11 @@ class MyApp extends StatelessWidget {
                ],
               ),
                  Column(
-                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    crossAxisAlignment: CrossAxisAlignment.center,
                    children: [
                      Padding(
-                       padding: const EdgeInsets.fromLTRB(50.0,8.0,8.0,8.0),
+                       padding: const EdgeInsets.fromLTRB(8.0,8.0,8.0,8.0),
                        child: SizedBox(
                          width: 70,
                          height: 40,
@@ -114,12 +145,12 @@ class MyApp extends StatelessWidget {
                              style: TextButton.styleFrom(
                                  side: const BorderSide(width: 1.0)
                       ),
-                             child: Text("8")
+                             child: const Text("8")
                   ),
                 ),
               ),
                      Padding(
-                       padding: const EdgeInsets.fromLTRB(50.0,8.0,8.0,8.0),
+                       padding: const EdgeInsets.fromLTRB(8.0,8.0,8.0,8.0),
                        child: SizedBox(
                          width: 70,
                          height: 40,
@@ -127,51 +158,29 @@ class MyApp extends StatelessWidget {
                              style: TextButton.styleFrom(
                                  side: const BorderSide(width: 1.0)
                       ),
-                             child: Text("8")
+                             child: const Text("8")
                   ),
                 ),
               ),
                      Padding(
-                       padding: const EdgeInsets.fromLTRB(50.0,8.0,8.0,8.0),
+                       padding: const EdgeInsets.fromLTRB(8.0,8.0,8.0,8.0),
                        child: SizedBox(
                          width: 70,
                          height: 40,
                          child: TextButton(onPressed: (){},
                              style: TextButton.styleFrom(
                                  side: const BorderSide(width: 1.0)
-                      ),
-                             child: Text("8")
-                  ),
-                ),
-              )
-
-            ],
-
-
-
-
-
-
-
-
+                             ),
+                             child: const Text("8")
+                         ),
+                       ),
+                     )
+                   ],
                  ),],
-
-
-
-
-
-
-
-             )
-
-
-
-
-
-
-           ),
-
-
+           )
       );
   }
 }
+
+
+
