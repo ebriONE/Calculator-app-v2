@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key});
+  const HomePage({super.key});
+
 
   @override
   State<HomePage> createState() => _MyAppState();
@@ -29,6 +30,9 @@ class _MyAppState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    //double width = screenSize.width * 1.0;
+    //double height = screenSize.height * 0.4500;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Calculator"),
@@ -39,8 +43,8 @@ class _MyAppState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            width: 450,
-            height: 410,
+            width: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.all(0.0),
               child: SizedBox(
@@ -48,11 +52,11 @@ class _MyAppState extends State<HomePage> {
                 child: Container(
                   color: Colors.pink[50],
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20.0,330.0,20.0,4.0),
+                    padding: const EdgeInsets.fromLTRB(20.0,270.0,20.0,4.0),
                     child: Text(
                       "$valueOfTheNumber",
                       textDirection: TextDirection.rtl,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 40.0
                       ),
                     ),
@@ -64,18 +68,18 @@ class _MyAppState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildButton("C", () {
+              buildButton("C",Colors.red,Colors.black, () {
                 setState(() {
                   valueOfTheNumber = 0;
                 });
               }),
-              buildButton("(  )", () {
+              buildButton("(  )", Colors.green,Colors.black,() {
                 //TODO add action
               }),
-              buildButton("%", () {
+              buildButton("%",Colors.green,Colors.black, () {
                 //TODO add action
               }),
-              buildButton("/", () {
+              buildButton("/",Colors.green,Colors.black, () {
                 //TODO add action
               }),
             ],
@@ -83,22 +87,22 @@ class _MyAppState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildButton("7",() {
+              buildButton("7",Colors.orange,Colors.black,() {
                 setState(() {
                   valueOfTheNumber = 7;
                 });
               }),
-              buildButton("8",() {
+              buildButton("8",Colors.orange,Colors.black,() {
                 setState(() {
                   valueOfTheNumber = 8;
                 });
               }),
-              buildButton("9",() {
+              buildButton("9",Colors.orange,Colors.black,() {
                 setState(() {
                   valueOfTheNumber = 9;
                 });
               }),
-              buildButton("*", () {
+              buildButton("*",Colors.green,Colors.black, () {
                 //TODO add action
               }),
             ],
@@ -106,22 +110,22 @@ class _MyAppState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildButton("4",() {
+              buildButton("4",Colors.orange,Colors.black,() {
                 setState(() {
                   valueOfTheNumber = 4;
                 });
               }),
-              buildButton("5",() {
+              buildButton("5",Colors.orange,Colors.black,() {
                 setState(() {
                   valueOfTheNumber = 5;
                 });
               }),
-              buildButton("6",() {
+              buildButton("6",Colors.orange,Colors.black,() {
                 setState(() {
                   valueOfTheNumber = 6;
                 });
               }),
-              buildButton("-", () {
+              buildButton("-",Colors.green,Colors.black, () {
                 //TODO add action
               }),
             ],
@@ -129,22 +133,22 @@ class _MyAppState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildButton("1",() {
+              buildButton("1",Colors.orange,Colors.black,() {
                 setState(() {
                   valueOfTheNumber = 1;
                 });
               }),
-              buildButton("2",() {
+              buildButton("2",Colors.orange,Colors.black,() {
                 setState(() {
                   valueOfTheNumber = 2;
                 });
               }),
-              buildButton("3",() {
+              buildButton("3",Colors.orange,Colors.black,() {
                 setState(() {
                   valueOfTheNumber = 3;
                 });
               }),
-              buildButton("+", () {
+              buildButton("+", Colors.green,Colors.black,() {
                 setState(() {
                   //TODO add action
                 });
@@ -154,46 +158,52 @@ class _MyAppState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildButton("+/-", () {
+              buildButton("+/-", Colors.orange,Colors.black,() {
                 //TODO add action
               }),
-              buildButton("0",() {
+              buildButton("0", Colors.orange,Colors.black, () {
                 setState(() {
                   valueOfTheNumber = 0;
                 });
               }),
-              buildButton(",", () {
+              buildButton(",",Colors.orange,Colors.black, () {
                 //TODO add action
               }),
-              buildButton("=", () {
+              buildButton("=",Colors.white,Colors.teal, () {
                 //TODO add action
               }),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              //TODO add action
-            ],
-          )
         ],
       ),
     );
   }
 
-  Widget buildButton(String buttonText, VoidCallback onPressed) {
+  Widget buildButton(String buttonText, Color color, Color background, VoidCallback onPressed,) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
         width: 70,
-        height: 40,
+        height: 50,
         child: TextButton(
           onPressed: onPressed,
-          style: TextButton.styleFrom(
-            side: const BorderSide(width: 1.0),
-            foregroundColor: Colors.deepOrange
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            side: MaterialStateProperty.all<BorderSide>(
+              const BorderSide(width: 0.0),
+            ),
+            foregroundColor: MaterialStateProperty.all<Color>(color),
+            backgroundColor: MaterialStateProperty.all<Color>(background),
           ),
-          child: Text(buttonText),
+          child: Text(buttonText,
+          style: const  TextStyle(
+            fontSize: 24.0
+          ),
+          ),
         ),
       ),
     );
